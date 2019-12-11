@@ -68,6 +68,12 @@ class Dog
   end
   
   def self.find_or_create_by(attributes)
+    @@all.each do |dog|
+      if dog.name == attributes[:name] && dog.breed == attributes[:breed]
+        return dog
+      end
+    end
+    
     sql = <<-SQL
       SELECT * FROM dogs
       WHERE name = ? AND breed = ?
