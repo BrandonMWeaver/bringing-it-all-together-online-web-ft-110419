@@ -1,3 +1,4 @@
+require "pry"
 class Dog
   
   attr_accessor :id, :name, :breed
@@ -55,6 +56,7 @@ class Dog
     SQL
     
     dog = DB[:conn].execute(sql, id).map do |row|
+      binding.pry
       self.new_from_db(row)
     end.first
     
