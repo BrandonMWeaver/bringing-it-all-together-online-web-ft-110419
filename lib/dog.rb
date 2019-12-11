@@ -10,6 +10,10 @@ class Dog
     @@all << self
   end
   
+  def self.all
+    return @@all
+  end
+  
   def self.create_table
     sql = <<-SQL
       CREATE TABLE IF NOT EXISTS dogs (
