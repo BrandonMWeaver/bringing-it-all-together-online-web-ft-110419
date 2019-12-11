@@ -61,7 +61,6 @@ class Dog
   end
   
   def self.find_or_create_by(attributes)
-    binding.pry
     sql = <<-SQL
       SELECT * FROM dogs
       WHERE name = ? AND breed = ?
@@ -70,6 +69,7 @@ class Dog
     
     DB[:conn].execute(sql, attributes[:name], attributes[:breed]).map do |row|
       self.new_from_db(row)
+      binding.pry
     end.first
   end
   
