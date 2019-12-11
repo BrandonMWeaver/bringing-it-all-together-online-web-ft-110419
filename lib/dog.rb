@@ -51,7 +51,7 @@ class Dog
     sql = <<-SQL
       SELECT * FROM dogs
       WHERE id = ?
-      LIMIT 1
+      LIMIT 1;
     SQL
     
     DB[:conn].execute(sql, id).map do |row|
@@ -63,7 +63,7 @@ class Dog
     sql = <<-SQL
       SELECT * FROM dogs
       WHERE name = ? AND breed = ?
-      LIMIT 1
+      LIMIT 1;
     SQL
     
     DB[:conn].execute(sql, attributes[:name], attributes[:breed]).map do |row|
@@ -75,7 +75,7 @@ class Dog
     sql = <<-SQL
       SELECT * FROM dogs
       WHERE name = ?
-      LIMIT 1
+      LIMIT 1;
     SQL
     
     DB[:conn].execute(sql, name).map do |row|
@@ -85,7 +85,9 @@ class Dog
   
   def update
     sql = <<-SQL
-      UPDATE dogs SET
+      UPDATE dogs SET name = ?, breed = ?
+      WHERE name = ?;
+    SQL
   end
   
 end
