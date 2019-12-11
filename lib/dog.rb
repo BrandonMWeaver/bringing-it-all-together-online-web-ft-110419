@@ -67,7 +67,8 @@ class Dog
       LIMIT 1;
     SQL
     
-    puts DB[:conn].execute(sql, attributes[:name], attributes[:breed])[0]
+    unless DB[:conn].execute(sql, attributes[:name], attributes[:breed])[0][0]
+      self.new(attributes)
     DB[:conn].execute(sql, attributes[:name], attributes[:breed]).map do |row|
       self.new_from_db(row)
     end.first
