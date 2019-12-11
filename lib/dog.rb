@@ -67,7 +67,7 @@ class Dog
       LIMIT 1;
     SQL
     
-    unless DB[:conn].execute(sql, attributes[:name], attributes[:breed])
+    unless DB[:conn].execute(sql, attributes[:name], attributes[:breed])[0]
       self.new(attributes)
     else
       DB[:conn].execute(sql, attributes[:name], attributes[:breed]).map do |row|
