@@ -67,9 +67,15 @@ class Dog
       LIMIT 1;
     SQL
     
-    DB[:conn].execute(sql, attributes[:name], attributes[:breed]).map do |row|
+    dog = DB[:conn].execute(sql, attributes[:name], attributes[:breed]).map do |row|
       self.new_from_db(row)
     end.first
+    
+    if dog.id
+      return dog
+    else
+      dog.save
+    end
   end
   
   def self.find_by_name(name)
