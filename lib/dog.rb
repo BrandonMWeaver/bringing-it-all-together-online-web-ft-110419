@@ -69,9 +69,11 @@ class Dog
     
     unless DB[:conn].execute(sql, attributes[:name], attributes[:breed])[0][0]
       self.new(attributes)
-    DB[:conn].execute(sql, attributes[:name], attributes[:breed]).map do |row|
-      self.new_from_db(row)
-    end.first
+    else
+      DB[:conn].execute(sql, attributes[:name], attributes[:breed]).map do |row|
+        self.new_from_db(row)
+      end.first
+    end
   end
   
   def self.find_by_name(name)
