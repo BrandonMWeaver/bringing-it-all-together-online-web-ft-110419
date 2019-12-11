@@ -6,4 +6,8 @@ class Dog
     attributes.each { |key, value| self.send("#{key}=", value) }
   end
   
+  def self.create_table
+    
+  end
+  
 end
