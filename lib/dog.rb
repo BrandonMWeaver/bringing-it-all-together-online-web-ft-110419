@@ -3,15 +3,9 @@ class Dog
   
   attr_accessor :id, :name, :breed
   
-  @@all = []
-  
   def initialize(id=nil, attributes)
     attributes.each { |key, value| self.send("#{key}=", value) }
     @@all << self
-  end
-  
-  def self.all
-    return @@all
   end
   
   def self.create_table
@@ -68,12 +62,7 @@ class Dog
   end
   
   def self.find_or_create_by(attributes)
-    @@all.each do |dog|
-      if dog.name == attributes[:name] && dog.breed == attributes[:breed]
-        return dog
-      end
-    end
-    
+    binding.pry
     sql = <<-SQL
       SELECT * FROM dogs
       WHERE name = ? AND breed = ?
