@@ -68,9 +68,9 @@ class Dog
     SQL
     
     unless DB[:conn].execute(sql, attributes[:name], attributes[:breed])[0]
-      self.new(attributes)
+      return self.new(attributes)
     else
-      DB[:conn].execute(sql, attributes[:name], attributes[:breed]).map do |row|
+      return DB[:conn].execute(sql, attributes[:name], attributes[:breed]).map do |row|
         self.new_from_db(row)
       end.first
     end
