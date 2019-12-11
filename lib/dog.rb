@@ -3,8 +3,11 @@ class Dog
   
   attr_accessor :id, :name, :breed
   
+  @@all = []
+  
   def initialize(id=nil, attributes)
     attributes.each { |key, value| self.send("#{key}=", value) }
+    @@all << self
   end
   
   def self.create_table
