@@ -61,9 +61,6 @@ class Dog
   end
   
   def self.find_or_create_by(attributes)
-    dog = self.find_by_name(attributes[:name])
-    if dog.id
-      
     sql = <<-SQL
       SELECT * FROM dogs
       WHERE name = ? AND breed = ?
