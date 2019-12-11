@@ -5,4 +5,5 @@ class Dog
   def inititalize(id=nil, attributes)
     attributes.each { |key, value| self.send("#{key}=", value) }
   end
+  
 end
