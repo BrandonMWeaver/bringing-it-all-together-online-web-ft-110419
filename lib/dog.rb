@@ -1,3 +1,4 @@
+require "pry"
 class Dog
   
   attr_accessor :id, :name, :breed
@@ -66,6 +67,7 @@ class Dog
       LIMIT 1;
     SQL
     
+    puts DB[:conn].execute(sql, attributes[:name], attributes[:breed])[0]
     DB[:conn].execute(sql, attributes[:name], attributes[:breed]).map do |row|
       self.new_from_db(row)
     end.first
